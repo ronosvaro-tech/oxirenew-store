@@ -1,9 +1,9 @@
 // OxiRenew store logic
 // Checkout: paste the Payhip product links here once the Payhip account is ready.
 const CHECKOUT_LINKS = {
-  "1pack": null, // e.g. "https://payhip.com/b/xxxx"
-  "2pack": null,
-  "3pack": null,
+  "1pack": "https://payhip.com/b/M2wqu",
+  "2pack": "https://payhip.com/b/YR0IS",
+  "3pack": "https://payhip.com/b/YZbBm",
 };
 
 const BUNDLES = {
