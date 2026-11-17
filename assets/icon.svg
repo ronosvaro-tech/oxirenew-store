@@ -1,0 +1,11 @@
+<svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="OxiRenew icon">
+  <defs>
+    <linearGradient id="dropi" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#36C7F0"/><stop offset="1" stop-color="#0A47C2"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="#0A47C2"/>
+  <path d="M64 22 C64 22 34 62 34 87 a30 30 0 0 0 60 0 C94 62 64 22 64 22 Z" fill="#fff"/>
+  <ellipse cx="52" cy="88" rx="6" ry="10" transform="rotate(-18 52 88)" fill="#36C7F0" opacity=".9"/>
+  <path d="M92 24 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4 Z" fill="#FFC93C"/>
+</svg>
