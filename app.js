@@ -47,8 +47,13 @@ const UPSELLS = {
 const overlay = document.getElementById("upsell-overlay");
 let upsellShown = false;
 
+const PRICES = { "1pack": 19.95, "2pack": 29.95, "3pack": 39.95 };
+
 function goToCheckout(sku) {
   const link = CHECKOUT_LINKS[sku];
+  if (window.fbq) {
+    fbq("track", "InitiateCheckout", { content_ids: [sku], value: PRICES[sku], currency: "USD" });
+  }
   if (link) {
     window.location.href = link;
   } else {
