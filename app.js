@@ -106,3 +106,35 @@ document.querySelectorAll(".faq-q").forEach((btn) => {
     if (!wasOpen) item.classList.add("open");
   });
 });
+
+// ---- rotating verified-review toast (real reviews only) ----
+const PROOF_REVIEWS = [
+  { n: "k***r", t: "“Pure magic! Saved me tons of money on replacements.”", img: "assets/reviews/r04b.png" },
+  { n: "o***r", t: "“Wrapped it for 3 days — great results right away!”", img: "assets/reviews/r01b.png" },
+  { n: "m***r", t: "“The yellowed areas improved a lot — so much cleaner and brighter.”", img: "assets/reviews/r02b.png" },
+  { n: "a***r", t: "“Feels like a new appliance again.”", img: "assets/reviews/r03b.png" },
+  { n: "a***r", t: "“Restored my rice cooker shell to bright white.”", img: "assets/reviews/r05b.png" },
+  { n: "f***r", t: "“Totally blown away! Strips ugly yellowing off like magic.”", img: "assets/reviews/r09b.png" },
+];
+(function () {
+  const toast = document.getElementById("proof-toast");
+  if (!toast) return;
+  let i = 0, closed = false, hideTimer = null;
+  document.getElementById("proof-close").addEventListener("click", () => {
+    closed = true;
+    toast.hidden = true;
+  });
+  function show() {
+    if (closed || !overlay.hidden) return; // never over the upsell modal
+    const r = PROOF_REVIEWS[i % PROOF_REVIEWS.length];
+    i++;
+    document.getElementById("proof-img").src = r.img;
+    document.getElementById("proof-text").textContent = r.t;
+    document.getElementById("proof-name").textContent = r.n;
+    toast.hidden = false;
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(() => { toast.hidden = true; }, 7000);
+  }
+  setTimeout(show, 6000);
+  setInterval(show, 22000);
+})();
