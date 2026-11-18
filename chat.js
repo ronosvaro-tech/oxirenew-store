@@ -68,7 +68,7 @@
     if (text.length < 3) { err.textContent = "Please type a message."; err.hidden = false; return; }
     if (form._honey.value) return;
     const send = form.querySelector(".oxc-send");
-    send.disabled = true; send.textContent = "Sending…";
+    send.disabled = true; send.textContent = "Sending… (a few seconds)";
     try {
       const r = await fetch(ENDPOINT, {
         method: "POST",
@@ -80,6 +80,8 @@
         }),
       });
       if (!r.ok) throw new Error("HTTP " + r.status);
+      const data = await r.json().catch(() => ({}));
+      if (String(data.success) !== "true") throw new Error(data.message || "not delivered");
       form.hidden = true; quick.hidden = true;
       root.querySelector(".oxc-done").hidden = false;
       if (window.fbq) fbq("track", "Contact");
