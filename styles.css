@@ -253,3 +253,11 @@ footer a:hover{color:#fff}
   .offer-cta{margin-top:22px}
   .sticky-cta .cta-btn{border:none;cursor:pointer;font-family:inherit}
 }
+
+/* hero: two before/afters people recognize — wall AC on top, fridge below (18.11) */
+.hero-ba{padding:10px 10px 4px}
+.hero-ba-row{margin-bottom:10px}
+.hero-ba .ba-half img{height:190px}
+.hero-ba .ba-half img.fridge{object-position:center 62%}
+.hero-ba-cap{font-family:'Montserrat',Arial,sans-serif;font-weight:700;font-size:13px;color:var(--navy);padding:6px 4px 0}
+@media (max-width:860px){.hero-ba .ba-half img{height:150px}}
