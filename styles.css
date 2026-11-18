@@ -229,3 +229,9 @@ footer a:hover{color:#fff}
 .oxc-done{background:#fff;border-radius:12px;padding:12px;font-size:14px;color:var(--ink)}
 .oxc-done[hidden]{display:none}
 @media (max-width:860px){.oxc{bottom:84px;right:12px}.oxc-btn-label{display:none}.oxc-btn{padding:13px}}
+
+/* share-your-result CTA (reviews section) */
+.share-cta{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:22px;background:var(--bg-soft);border:1px dashed #B9C8E2;border-radius:16px;padding:16px 20px;font-size:15px}
+.share-cta a{flex:none;background:var(--navy);color:#fff;text-decoration:none;font-weight:700;border-radius:10px;padding:10px 16px}
+.share-cta a:hover{background:var(--blue)}
+@media (max-width:640px){.share-cta{flex-direction:column;align-items:flex-start}}
