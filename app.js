@@ -130,6 +130,8 @@ const PROOF_REVIEWS = [
   });
   function show() {
     if (closed || !overlay.hidden) return; // never over the upsell modal
+    const offerBox = document.getElementById("offer").getBoundingClientRect();
+    if (offerBox.top < innerHeight && offerBox.bottom > 0) return; // never cover the packs / checkout
     const r = PROOF_REVIEWS[i % PROOF_REVIEWS.length];
     i++;
     document.getElementById("proof-img").src = r.img;
