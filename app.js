@@ -55,7 +55,8 @@ function goToCheckout(sku) {
     fbq("track", "InitiateCheckout", { content_ids: [sku], value: PRICES[sku], currency: "USD" });
   }
   if (link) {
-    window.location.href = link;
+    // give the pixel beacon time to leave before the page unloads
+    setTimeout(() => { window.location.href = link; }, window.fbq ? 350 : 0);
   } else {
     alert("Checkout is almost ready — we are launching very soon!");
   }
