@@ -235,3 +235,21 @@ footer a:hover{color:#fff}
 .share-cta a{flex:none;background:var(--navy);color:#fff;text-decoration:none;font-weight:700;border-radius:10px;padding:10px 16px}
 .share-cta a:hover{background:var(--blue)}
 @media (max-width:640px){.share-cta{flex-direction:column;align-items:flex-start}}
+
+/* mobile offer fix (18.11): compact pack rows so "Secure Checkout" is on screen right under the packs */
+#offer{scroll-margin-top:64px}
+@media (max-width:860px){
+  .coverage-note{margin-bottom:22px;font-size:13px;padding:10px 14px}
+  .bundles{gap:14px}
+  .bundle{display:grid;grid-template-columns:1fr auto;grid-template-areas:"name price" "qty price" "per save";column-gap:12px;row-gap:2px;align-items:center;text-align:left;padding:18px 16px 14px}
+  .bundle:hover{transform:none}
+  .bundle h3{grid-area:name;margin:0}
+  .bundle .qty-note{grid-area:qty;margin:0}
+  .bundle .per{grid-area:per;margin:0}
+  .bundle .price{grid-area:price;font-size:26px;text-align:right;line-height:1.1}
+  .bundle .was{display:block;font-size:12.5px;margin:0}
+  .bundle .save{grid-area:save;margin:0;justify-self:end}
+  .bundle .tag{left:16px;transform:none;top:-11px;font-size:10.5px;padding:3px 10px}
+  .offer-cta{margin-top:22px}
+  .sticky-cta .cta-btn{border:none;cursor:pointer;font-family:inherit}
+}

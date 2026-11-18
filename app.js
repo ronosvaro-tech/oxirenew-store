@@ -87,8 +87,8 @@ function showUpsell(offer) {
 document.getElementById("upsell-close").addEventListener("click", () => { overlay.hidden = true; });
 overlay.addEventListener("click", (e) => { if (e.target === overlay) overlay.hidden = true; });
 
-// checkout
-document.getElementById("checkout-btn").addEventListener("click", () => {
+// checkout — the main button and the sticky mobile bar both go straight to checkout
+function startCheckout() {
   const offer = UPSELLS[selectedSku];
   if (offer && !upsellShown) {
     upsellShown = true; // ask once per visit — never nag
@@ -96,7 +96,10 @@ document.getElementById("checkout-btn").addEventListener("click", () => {
   } else {
     goToCheckout(selectedSku);
   }
-});
+}
+document.getElementById("checkout-btn").addEventListener("click", startCheckout);
+const stickyCheckout = document.getElementById("sticky-checkout");
+if (stickyCheckout) stickyCheckout.addEventListener("click", startCheckout);
 
 // FAQ accordion
 document.querySelectorAll(".faq-q").forEach((btn) => {
