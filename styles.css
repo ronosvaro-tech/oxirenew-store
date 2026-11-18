@@ -261,3 +261,17 @@ footer a:hover{color:#fff}
 .hero-ba .ba-half img.fridge{object-position:center 62%}
 .hero-ba-cap{font-family:'Montserrat',Arial,sans-serif;font-weight:700;font-size:13px;color:var(--navy);padding:6px 4px 0}
 @media (max-width:860px){.hero-ba .ba-half img{height:150px}}
+
+/* mobile hero order (18.11): headline -> before/afters -> text -> CTA, so ad visitors see the result first */
+@media (max-width:860px){
+  .hero{padding:22px 0 32px}
+  .hero-grid{display:flex;flex-direction:column;gap:0}
+  .hero-grid > div:first-child{display:contents}
+  .hero .eyebrow{display:none}
+  .hero h1{order:1;font-size:34px;margin-bottom:14px;text-align:center}
+  .hero-grid > div:last-child{order:2;margin-bottom:20px}
+  .hero p.lead{order:3;font-size:16px;margin-bottom:18px;max-width:none}
+  .hero .cta-btn{order:4;align-self:stretch;text-align:center}
+  .hero .cta-sub{order:5;text-align:center}
+  .hero .trust-row{order:6;justify-content:center;margin-top:18px;gap:14px}
+}
