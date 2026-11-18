@@ -1,0 +1,14 @@
+<svg viewBox="0 0 720 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="OxiRenew — White Again.">
+  <defs>
+    <linearGradient id="drop" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#36C7F0"/><stop offset="1" stop-color="#0A47C2"/>
+    </linearGradient>
+  </defs>
+  <path d="M70 38 C70 38 34 86 34 116 a36 36 0 0 0 72 0 C106 86 70 38 70 38 Z" fill="url(#drop)"/>
+  <ellipse cx="56" cy="116" rx="7" ry="12" transform="rotate(-18 56 116)" fill="#fff" opacity=".8"/>
+  <path d="M103 34 l5 13 13 5 -13 5 -5 13 -5 -13 -13 -5 13 -5 Z" fill="#FFC93C"/>
+  <text x="140" y="140" font-family="Montserrat, Arial, sans-serif" font-weight="800" font-size="84">
+    <tspan fill="#0A47C2">Oxi</tspan><tspan fill="#FF7A1A">Renew</tspan>
+  </text>
+  <text x="144" y="182" font-family="Montserrat, Arial, sans-serif" font-weight="700" font-size="19" letter-spacing="7" fill="#0B2A6B" opacity=".55">WHITE AGAIN.</text>
+</svg>
