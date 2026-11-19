@@ -84,8 +84,16 @@ function showUpsell(offer) {
   };
 }
 
-document.getElementById("upsell-close").addEventListener("click", () => { overlay.hidden = true; });
-overlay.addEventListener("click", (e) => { if (e.target === overlay) overlay.hidden = true; });
+// Closing the upsell (× or tapping outside) only declines the upgrade — the
+// visitor already chose to check out, so continue with the pack they picked.
+// (Clarity 19.11: a visitor tapped × and was stranded on the page.)
+function declineUpsell() {
+  if (overlay.hidden) return;
+  overlay.hidden = true;
+  goToCheckout(selectedSku);
+}
+document.getElementById("upsell-close").addEventListener("click", declineUpsell);
+overlay.addEventListener("click", (e) => { if (e.target === overlay) declineUpsell(); });
 
 // checkout — the main button and the sticky mobile bar both go straight to checkout
 function startCheckout() {
