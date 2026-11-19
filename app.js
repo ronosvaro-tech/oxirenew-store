@@ -34,18 +34,22 @@ document.querySelectorAll(".bundle").forEach((el) => {
 
 // ---- coverage upsell ----
 // One 100ml bottle ≈ one AC unit or one piece of furniture. When someone
-// checks out with a smaller pack, offer the next pack once, elegantly.
+// checks out with a smaller pack, offer the bigger packs once, elegantly.
+// Each option shows its own saving (per-bottle price + $ saved vs buying
+// single bottles at $19.95) so the value of each step is obvious.
+const PACK_OPTIONS = {
+  "2pack": { title: "Home Pack · 2 bottles", price: "$29.95", note: "$14.98/bottle · you save $9.95", tag: "" },
+  "3pack": { title: "Whole-House · 3 bottles", price: "$39.95", note: "$13.32/bottle · you save $19.90", tag: "BEST VALUE" },
+};
 const UPSELLS = {
   "1pack": {
-    to: "2pack",
-    body: 'A heads-up before you order: one 100ml bottle restores about <b>one AC unit or one piece of furniture</b>. Planning to whiten more than one item? The 2-pack covers it for just <b>$10 more</b> — one order, one delivery, everything covered.',
-    upgrade: "Upgrade to 2-Pack · $29.95",
+    options: ["2pack", "3pack"],
+    body: 'A heads-up before you order: one 100ml bottle restores about <b>one AC unit or one piece of furniture</b>. Planning to whiten more than one item? Bigger packs cost less per bottle — one order, one delivery, everything covered.',
     decline: "No thanks, 1 bottle is enough",
   },
   "2pack": {
-    to: "3pack",
+    options: ["3pack"],
     body: 'Doing the whole house? AC unit, toilet seat <i>and</i> that yellowed furniture — the 3-pack covers it all for just <b>$10 more</b> ($13.32 a bottle, our lowest price).',
-    upgrade: "Upgrade to 3-Pack · $39.95",
     decline: "Keep the 2-Pack",
   },
 };
@@ -77,16 +81,28 @@ function selectBundle(sku) {
 
 function showUpsell(offer) {
   document.getElementById("upsell-body").innerHTML = offer.body;
-  document.getElementById("upsell-upgrade").textContent = offer.upgrade;
   document.getElementById("upsell-decline").textContent = offer.decline;
+  const box = document.getElementById("upsell-options");
+  box.innerHTML = "";
+  offer.options.forEach((sku) => {
+    const o = PACK_OPTIONS[sku];
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "upsell-opt" + (o.tag ? " best" : "");
+    btn.innerHTML =
+      (o.tag ? `<span class="uo-tag">${o.tag}</span>` : "") +
+      `<span class="uo-main"><span class="uo-title">${o.title}</span><span class="uo-note">${o.note}</span></span>` +
+      `<span class="uo-price">${o.price}</span>`;
+    btn.onclick = () => {
+      overlay.hidden = true;
+      selectBundle(sku);
+      goToCheckout(sku);
+    };
+    box.appendChild(btn);
+  });
   overlay.hidden = false;
   overlay.scrollTop = 0; // start at the top so the × is visible
 
-  document.getElementById("upsell-upgrade").onclick = () => {
-    overlay.hidden = true;
-    selectBundle(offer.to);
-    goToCheckout(offer.to);
-  };
   document.getElementById("upsell-decline").onclick = () => {
     overlay.hidden = true;
     goToCheckout(selectedSku);

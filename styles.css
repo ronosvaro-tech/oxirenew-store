@@ -290,3 +290,16 @@ footer a:hover{color:#fff}
 .offer-note.pay-card-note{color:#86EFAC;font-weight:600}
 .offer-note.inapp-hint{background:#fff6e5;border:1px solid #ffd9a3;border-radius:10px;padding:8px 12px;color:#7a4a00}
 .offer-note.inapp-hint[hidden]{display:none}
+
+/* upsell options (19.11): 2-pack + 3-pack, each with its own saving */
+.upsell-options{display:flex;flex-direction:column;gap:14px;margin-top:4px}
+.upsell-opt{position:relative;display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;text-align:left;background:#FFF7F0;border:2px solid var(--orange);border-radius:14px;padding:14px 16px;cursor:pointer;font-family:inherit;transition:transform .12s}
+.upsell-opt:active{transform:scale(.98)}
+.upsell-opt.best{background:var(--orange);margin-top:6px;box-shadow:0 8px 22px rgba(255,122,26,.35)}
+.uo-main{display:flex;flex-direction:column;gap:3px;min-width:0}
+.uo-title{font-family:'Montserrat',Arial,sans-serif;font-weight:800;font-size:16px;color:var(--navy);line-height:1.25}
+.uo-note{font-size:13px;font-weight:700;color:#15803D}
+.uo-price{font-family:'Montserrat',Arial,sans-serif;font-weight:800;font-size:20px;color:var(--navy);white-space:nowrap}
+.upsell-opt.best .uo-title,.upsell-opt.best .uo-price{color:#fff}
+.upsell-opt.best .uo-note{color:#FFF1C2}
+.uo-tag{position:absolute;top:-11px;left:14px;background:var(--navy);color:#fff;font-size:10.5px;font-weight:800;letter-spacing:1.2px;padding:3px 10px;border-radius:999px}
