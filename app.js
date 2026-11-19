@@ -134,6 +134,18 @@ document.getElementById("checkout-btn").addEventListener("click", startCheckout)
 const stickyCheckout = document.getElementById("sticky-checkout");
 if (stickyCheckout) stickyCheckout.addEventListener("click", startCheckout);
 
+// Keep the chat bubble, review toast and page padding just above the bottom
+// order bar, whatever its real height (large phone fonts make it taller).
+const stickyBar = document.querySelector(".sticky-cta");
+function setStickyH() {
+  if (stickyBar && stickyBar.offsetHeight) {
+    document.documentElement.style.setProperty("--sticky-h", stickyBar.offsetHeight + "px");
+  }
+}
+setStickyH();
+window.addEventListener("resize", setStickyH);
+if (window.ResizeObserver && stickyBar) new ResizeObserver(setStickyH).observe(stickyBar);
+
 // Instagram/Facebook in-app browsers hide Apple Pay. The card form still works
 // there, so only show a gentle hint — never force a redirect.
 if (/Instagram|FBAN|FBAV/i.test(navigator.userAgent)) {

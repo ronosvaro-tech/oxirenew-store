@@ -303,3 +303,16 @@ footer a:hover{color:#fff}
 .upsell-opt.best .uo-title,.upsell-opt.best .uo-price{color:#fff}
 .upsell-opt.best .uo-note{color:#FFF1C2}
 .uo-tag{position:absolute;top:-11px;left:14px;background:var(--navy);color:#fff;font-size:10.5px;font-weight:800;letter-spacing:1.2px;padding:3px 10px;border-radius:999px}
+
+/* bottom order bar (19.11): one compact line even with large phone fonts; the chat
+   bubble, review toast and page padding follow its real height (--sticky-h, set in app.js) */
+@media (max-width:860px){
+  .sticky-cta{padding:8px 14px calc(8px + env(safe-area-inset-bottom))}
+  .sticky-cta .in{flex-wrap:nowrap;gap:10px}
+  .sticky-cta .p{font-size:16px;line-height:1.15;white-space:nowrap;min-width:0;overflow:hidden}
+  .sticky-cta .p small{font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .sticky-cta .cta-btn{white-space:nowrap;flex-shrink:0;padding:11px 20px;font-size:15px}
+  body{padding-bottom:calc(var(--sticky-h,62px) + 8px)}
+  .oxc{bottom:calc(var(--sticky-h,62px) + 12px)}
+  .proof-toast{bottom:calc(var(--sticky-h,62px) + 12px);max-width:calc(100vw - 96px)}
+}
