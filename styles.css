@@ -134,7 +134,8 @@ footer a:hover{color:#fff}
   .hero-grid,.science-grid{grid-template-columns:1fr;gap:28px}
   .steps,.ba-grid,.reviews-grid{grid-template-columns:1fr}
   .bundles{grid-template-columns:1fr;max-width:420px}
-  .bundle.popular{order:-1}
+  /* 19.11: packs keep their natural order (Starter first, selected by default) */
+  header{position:relative}
   .guarantee{flex-direction:column;text-align:center}
   .sticky-cta{display:block}
   body{padding-bottom:70px}

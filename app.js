@@ -18,7 +18,7 @@ const BUNDLES = {
   "3pack": { label: "3-pack", price: "$39.95", off: "67% off" },
 };
 
-let selectedSku = "2pack";
+let selectedSku = "1pack"; // smallest pack by default - the upsell offers the upgrade
 
 // bundle selection
 document.querySelectorAll(".bundle").forEach((el) => {
