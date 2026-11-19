@@ -24,7 +24,7 @@ section{padding:64px 0}
 .topbar b{color:#FFC93C}
 
 /* header */
-header{position:sticky;top:0;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid #E8EDF5;z-index:50}
+header{position:relative;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid #E8EDF5;z-index:50}
 .header-in{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;max-width:1080px;margin:0 auto}
 .logo svg{height:36px;width:auto;display:block}
 .header-cta{background:var(--orange);color:#fff;font-weight:700;font-size:14px;padding:10px 20px;border-radius:999px;text-decoration:none;white-space:nowrap}
@@ -247,7 +247,7 @@ footer a:hover{color:#fff}
 @media (max-width:640px){.share-cta{flex-direction:column;align-items:flex-start}}
 
 /* mobile offer fix (18.11): compact pack rows so "Secure Checkout" is on screen right under the packs */
-#offer{scroll-margin-top:64px}
+#offer{scroll-margin-top:12px}
 @media (max-width:860px){
   .coverage-note{margin-bottom:22px;font-size:13px;padding:10px 14px}
   .bundles{gap:14px}
