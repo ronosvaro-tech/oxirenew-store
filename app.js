@@ -80,6 +80,7 @@ function showUpsell(offer) {
   document.getElementById("upsell-upgrade").textContent = offer.upgrade;
   document.getElementById("upsell-decline").textContent = offer.decline;
   overlay.hidden = false;
+  overlay.scrollTop = 0; // start at the top so the × is visible
 
   document.getElementById("upsell-upgrade").onclick = () => {
     overlay.hidden = true;

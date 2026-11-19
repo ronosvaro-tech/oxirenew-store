@@ -144,18 +144,27 @@ footer a:hover{color:#fff}
 .coverage-note{max-width:640px;margin:0 auto 28px;background:#EAF2FB;border:1px solid #CBDCF5;border-radius:12px;padding:12px 18px;font-size:14px;color:var(--navy);text-align:center}
 
 /* upsell modal */
-.upsell-overlay{position:fixed;inset:0;background:rgba(11,42,107,.55);display:flex;align-items:center;justify-content:center;z-index:200;padding:16px}
+/* scrollable + margin:auto (not align-items:center): when the modal is taller than the
+   screen (Android large-font / Instagram in-app browser) its top (×) and bottom ("No thanks")
+   must stay reachable — a flex-centered overflow cuts the top off unreachably (bug 19.11) */
+.upsell-overlay{position:fixed;inset:0;background:rgba(11,42,107,.55);display:flex;justify-content:center;z-index:100000;padding:16px;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
 .upsell-overlay[hidden]{display:none}
-.upsell-modal{position:relative;background:#fff;border-radius:20px;max-width:420px;width:100%;padding:36px 28px 28px;text-align:center;box-shadow:0 24px 64px rgba(11,42,107,.35);animation:upsell-pop .25s ease}
+.upsell-modal{position:relative;margin:auto;background:#fff;border-radius:20px;max-width:420px;width:100%;padding:36px 28px 28px;text-align:center;box-shadow:0 24px 64px rgba(11,42,107,.35);animation:upsell-pop .25s ease}
 @keyframes upsell-pop{from{transform:translateY(14px) scale(.97);opacity:0}to{transform:none;opacity:1}}
 .upsell-icon{font-size:40px;margin-bottom:8px}
 .upsell-modal h3{font-size:24px;color:var(--navy);margin-bottom:10px}
 .upsell-modal p{color:var(--gray);font-size:15px;margin-bottom:22px}
 .upsell-modal p b{color:var(--navy)}
 .upsell-modal .cta-btn{width:100%;justify-content:center}
-.upsell-decline{display:block;margin:14px auto 0;background:none;border:none;color:var(--gray);font-size:14px;text-decoration:underline;cursor:pointer}
-.upsell-decline:hover{color:var(--ink)}
-.upsell-close{position:absolute;top:10px;right:14px;background:none;border:none;font-size:26px;color:var(--gray);cursor:pointer;line-height:1}
+.upsell-decline{display:block;width:100%;margin:12px auto 0;background:#fff;border:1.5px solid #CBD5E1;border-radius:12px;padding:12px 14px;color:var(--ink);font-size:15px;font-weight:600;cursor:pointer}
+.upsell-decline:hover{border-color:var(--gray)}
+.upsell-close{position:absolute;top:6px;right:8px;width:44px;height:44px;background:none;border:none;font-size:30px;color:var(--gray);cursor:pointer;line-height:1}
+@media (max-width:480px){
+  .upsell-modal{padding:30px 18px 18px;border-radius:16px}
+  .upsell-icon{display:none}
+  .upsell-modal h3{font-size:21px;margin-bottom:8px;padding:0 30px}
+  .upsell-modal p{font-size:14px;margin-bottom:16px}
+}
 
 /* real before/after photos */
 .ba-photos{display:flex;gap:4px;border-radius:14px;overflow:hidden}
