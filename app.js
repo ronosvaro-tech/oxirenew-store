@@ -1,10 +1,16 @@
 // OxiRenew store logic
-// Checkout: direct Payhip checkout links (skip the product page, land on the payment form).
+// Checkout: PayPal hosted payment links (account "Dollar IM Dot Com").
+// The page offers PayPal, Apple Pay (Safari) and an inline "Debit or Credit
+// Card" form — no PayPal account and no popup needed, so it works inside the
+// Instagram/Facebook in-app browser. Shipping address is collected there and
+// PayPal auto-returns the buyer to /thank-you.html (fires the Purchase pixel).
 const CHECKOUT_LINKS = {
-  "1pack": "https://payhip.com/buy?link=M2wqu",
-  "2pack": "https://payhip.com/buy?link=YR0IS",
-  "3pack": "https://payhip.com/buy?link=YZbBm",
+  "1pack": "https://www.paypal.com/ncp/payment/TVZR5PEHXZKMG",
+  "2pack": "https://www.paypal.com/ncp/payment/UFH5SUA2YJ3H4",
+  "3pack": "https://www.paypal.com/ncp/payment/CKHWUZ9T2DJXJ",
 };
+// Previous Payhip checkout (PayPal-only, no card form) — kept for rollback:
+// 1pack M2wqu · 2pack YR0IS · 3pack YZbBm  (https://payhip.com/buy?link=CODE)
 
 const BUNDLES = {
   "1pack": { label: "1-pack", price: "$19.95", off: "50% off" },
@@ -51,6 +57,8 @@ const PRICES = { "1pack": 19.95, "2pack": 29.95, "3pack": 39.95 };
 
 function goToCheckout(sku) {
   const link = CHECKOUT_LINKS[sku];
+  // remember what was bought so /thank-you.html can report the right Purchase value
+  try { localStorage.setItem("oxr_pending", JSON.stringify({ sku, value: PRICES[sku], ts: Date.now() })); } catch (e) {}
   if (window.fbq) {
     fbq("track", "InitiateCheckout", { content_ids: [sku], value: PRICES[sku], currency: "USD" });
   }
@@ -108,6 +116,13 @@ function startCheckout() {
 document.getElementById("checkout-btn").addEventListener("click", startCheckout);
 const stickyCheckout = document.getElementById("sticky-checkout");
 if (stickyCheckout) stickyCheckout.addEventListener("click", startCheckout);
+
+// Instagram/Facebook in-app browsers hide Apple Pay. The card form still works
+// there, so only show a gentle hint — never force a redirect.
+if (/Instagram|FBAN|FBAV/i.test(navigator.userAgent)) {
+  const hint = document.getElementById("inapp-hint");
+  if (hint) hint.hidden = false;
+}
 
 // FAQ accordion
 document.querySelectorAll(".faq-q").forEach((btn) => {

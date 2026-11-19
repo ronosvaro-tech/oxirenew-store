@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Order Confirmed | OxiRenew</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="assets/icon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=20261119b">
+<style>
+.ty{max-width:560px;margin:0 auto;padding:48px 20px 60px;text-align:center;font-family:'Inter',Arial,sans-serif;color:var(--ink)}
+.ty .logo-img{height:36px;margin-bottom:26px}
+.ty .ok{width:72px;height:72px;border-radius:50%;background:#E8F7EE;color:#16A34A;font-size:38px;line-height:72px;margin:0 auto 18px}
+.ty h1{font-family:'Montserrat',Arial,sans-serif;color:var(--navy);font-size:28px;margin:0 0 10px}
+.ty p{font-size:16px;color:var(--gray);margin:0 0 10px}
+.ty .steps{text-align:left;background:#F5F8FD;border-radius:14px;padding:18px 20px;margin:22px 0}
+.ty .steps li{margin:0 0 10px;font-size:15px}
+.ty .steps li:last-child{margin:0}
+.ty a.btn{display:inline-block;margin-top:8px;background:var(--orange);color:#fff;text-decoration:none;font-weight:700;border-radius:12px;padding:13px 22px}
+.ty .small{font-size:14px;margin-top:22px}
+.ty .small a{color:var(--blue)}
+</style>
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1488652153125023');
+fbq('track', 'PageView');
+// Purchase: PayPal auto-returns buyers here after a successful payment.
+// The pack + price were saved by app.js right before the buyer left for PayPal.
+// Fire once per order, only for a checkout started in the last 3 hours.
+(function () {
+  try {
+    var p = JSON.parse(localStorage.getItem('oxr_pending') || 'null');
+    if (!p || !p.ts || Date.now() - p.ts > 3 * 3600 * 1000) return;
+    if (localStorage.getItem('oxr_fired') === String(p.ts)) return;
+    fbq('track', 'Purchase', { value: p.value, currency: 'USD', content_ids: [p.sku], content_type: 'product' }, { eventID: 'oxr-' + p.ts });
+    localStorage.setItem('oxr_fired', String(p.ts));
+    localStorage.removeItem('oxr_pending');
+  } catch (e) {}
+})();
+</script>
+<!-- Microsoft Clarity -->
+<script>
+(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","zficgr0hfk");
+</script>
+</head>
+<body>
+<main class="ty">
+  <a href="index.html"><img class="logo-img" src="assets/logo.svg" alt="OxiRenew"></a>
+  <div class="ok">&#10003;</div>
+  <h1>Thank you &mdash; your order is confirmed!</h1>
+  <p>A payment receipt from PayPal is on its way to your email.</p>
+  <ol class="steps">
+    <li><b>Ships within 1&ndash;3 business days.</b> We'll email your tracking number as soon as it leaves.</li>
+    <li><b>Free tracked delivery</b> usually takes 7&ndash;14 business days.</li>
+    <li><b>While you wait:</b> read the step-by-step restore guide so you're ready on day one.</li>
+  </ol>
+  <a class="btn" href="guide/">Open the Restore Guide &rarr;</a>
+  <p class="small"><a href="guide/OxiRenew-Restore-Guide.pdf">Download the PDF guide</a> &middot; Questions? <a href="mailto:support@oxirenew.com">support@oxirenew.com</a></p>
+</main>
+</body>
+</html>
